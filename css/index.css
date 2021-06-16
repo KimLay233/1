@@ -3,14 +3,10 @@
     margin: 0;
     padding: 0;
     font-size: 18px;
-    backgroung-size:125%;
 }
 .top, .card, .radio{
     background-color: white;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
-}
-body{
-    /*transform: scale(1.25);*/
 }
 /*顶部导航*/
 .top{
@@ -105,7 +101,6 @@ body{
     margin: 5px 5px 0px 0px;
     height: 30px;
     line-height: 30px;
-    /*找个字体*/
 }
 /*名片*/
 .card{
