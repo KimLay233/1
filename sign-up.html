@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>注册界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/mr-basic.css"/>
+    <link href="css/mr-login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background-color: #f5f6f7;">
+
+<div class="res-banner">
+    <div class="res-main">
+        <div class="login-box" style="right:30%">
+            <div class="mr-tabs" id="doc-my-tabs">
+                <ul class="mr-tabs-nav mr-nav mr-nav-tabs mr-nav-justify">
+                    <li class="mr-active"><a href="">注册</a></li>
+                </ul>
+
+                <div class="mr-tabs-bd">
+                    <div class="mr-tab-panel mr-active">
+                        <form method="post">
+
+                            <div class="user-email">
+                                <label for="email"><i class="mr-icon-envelope-o"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="email" name="" id="email" placeholder="请输入邮箱账号">
+                            </div>
+                            <div class="user-pass">
+                                <label for="password"><i class="mr-icon-lock"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="password" name="" id="password" placeholder="设置密码">
+                            </div>
+                            <div class="user-pass">
+                                <label for="passwordRepeat"><i class="mr-icon-lock"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+                            </div>
+
+                            <div class="user-pass">
+                                <label for="passwordRepeat"><i class="mr-icon-mobile"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="text" name="" id="tel" placeholder="请输入手机号">
+                            </div>
+
+                        </form>
+
+                        <div class="login-links">
+                            <label for="reader-me">
+                                <input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+
+                            </label>
+                        </div>
+                        <div class="mr-cf">
+                            <input type="submit" onclick="mr_verify()" value="注册" class="mr-btn mr-btn-primary mr-btn-sm mr-fl">
+                        </div>
+                        <div id="haveUser">
+                            <div class="Have">已有账号？<a href="sign-in.html">登录</a></div>
+                            <div class="Enter"><a id="temp" href="#">游客登录</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    var temp = document.getElementById('temp');
+    temp.onclick =  function tourist(){
+        var str = "游客";
+        window.sessionStorage.removeItem('user');
+        window.sessionStorage.setItem('user_temp', str);
+        window.open('index.html');
+        sessionStorage.href = 'index.html';
+        window.close();
+    }
+    function mr_verify(){
+        //获取表单对象
+        var a=document.getElementById("email").value;
+        var b=document.getElementById("password").value;
+        var c=document.getElementById("passwordRepeat").value;
+        var d=document.getElementById("tel").value;
+        //验证项目是否为空
+        //1、邮箱、密码、确认密码、手机号码不能为空！
+        if (a==""||b==""||c==""||d=="") {
+            alert("邮箱、密码、确认密码、手机号码不能为空！");
+            // 如果为空,返回false
+            return false;
+        }
+        //2、验证密码设置前后不一致！
+        if(b!=c){
+            alert("验证密码设置前后不一致！");
+            return false;
+        }
+        //验证邮件格式：有“@”、“."并且“@”在“."之前。
+        var pos1 = a.indexOf("@");
+        var pos2 = a.indexOf(".");
+        if (pos1 != -1  && pos2 != -1) {
+            if(pos1>pos2){
+                alert("@在.之前。");
+                return false;
+            }
+        }
+        else{
+            alert("邮箱格式不合规范");
+            return false;
+        }
+        //验证手机号格式
+        //要求：手机号码不能为非数字且手机号为11位数字！
+        if(isNaN(d)){
+            alert("手机号码不能为非数字");
+            return false;
+        }
+        if (d.length!=11) {
+            alert("手机号为11位数字");
+            return false;
+        }
+        alert("注册成功!");
+        //设置sessionStorage
+        window.sessionStorage.setItem('user', a);
+        window.sessionStorage.setItem('pwd', b);
+        window.open('sign-in.html');
+        sessionStorage.href = 'sign-in.html';
+        window.close();
+}
+</script>
+</body>
+
+</html>

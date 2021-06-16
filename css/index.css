@@ -1,0 +1,277 @@
+/*全局样式*/
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+.top, .card, .radio{
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+}
+
+/*顶部导航*/
+.top{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+body div{
+    /*border: 1px solid red;*/
+}
+.top div div{
+    float: left;
+}
+.left{
+    margin-left: 30px;
+    margin-top: 7px;
+    width: 60%;
+    float: left;
+    height: 100%;
+}
+.right{
+    margin-top: 7px;
+    float: right;
+    height: 100%;
+    margin-left: 80px;
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+    color: #3498db;
+}
+.myClass{
+    margin-left: 10px;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding-top: 3px;
+    /*字体*/
+}
+#search_button{
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/searchImg.png");
+    background-size: 100%;
+    border-left: none;
+    background-color: #ff7a7a;
+}
+body{
+    background-color: #f5f6f7;
+}
+#dp1,#dp2{
+    display: none;
+}
+#search-input{
+    margin-left: 5px;
+    height: 20px;
+    width: 72%;
+    padding: 3px;
+    padding-left: 9px;
+    background-color: #f5f6f7;
+}
+#school_Img{
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/school.jpg");
+    background-size: 100%;
+    margin: 3px 5px;
+}
+
+#search{
+    width: 50%;
+    float: right;
+    height: 100%;
+    /*margin-left: 250px;*/
+    /*margin-right: 200px;*/
+}
+#search span,input,button{
+    float: left;
+    margin-top: 5px;
+}
+
+#search>span{
+    height: 100%;
+    line-height: 100%;
+    padding-top: 3px;
+    margin-left: 5px;
+    margin-top: 6px;
+    font-size: 20px;
+}
+.top_text{
+    float: right;
+    margin: 5px 5px 0px 0px;
+    height: 30px;
+    line-height: 30px;
+    /*找个字体*/
+}
+/*名片*/
+.card{
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    /*margin-top: 10px;*/
+    width: 290px;
+    border-bottom: 2px solid green;
+}
+
+#user, #user_info{
+    padding-top: 20px;
+    margin: 0 auto;
+}
+#user{
+    background-image: url("../img/user.jpg");
+    background-size: 100%;
+    background-repeat:no-repeat;
+    margin-top: 20px;
+    width: 90%;
+    height: 100px;
+}
+#user>p{
+    position: relative;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    text-align: center;
+    /*border: 1px solid black;*/
+}
+#info>li{
+    /*border: 1px solid black;*/
+    list-style-type: none;
+    float: left;
+    width: 30%;
+    height: 70%;
+    margin-left: 5px;
+    border-right: 1px solid #808080;
+}
+#info>li>p{
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    /*border: 1px solid black;*/
+    width: 50px;
+    text-align: center;
+}
+#user_info{
+    width: 90%;
+    height: 100px;
+
+}
+/*视频内容*/
+.radio{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    width: 900px;
+    height: 900px;
+
+}
+.radio>iframe{
+    margin-left: 45px;
+    margin-top: 10px;
+    width: 90%;
+    height: 600px;
+}
+h1{
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;
+}
+
+textarea{
+    width: 75%;
+    height: 60px;
+    margin-top: 30px;
+    margin-left: 50px;
+    border:0;
+    border-radius:5px;
+    background-color:rgba(241,241,241,.98);
+    padding: 10px;
+    resize: none;
+    margin-bottom: 30px;
+}
+
+#btn2{
+
+    /*引用b站的样式*/
+
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+    font-family: inherit;
+    line-height: inherit;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    box-sizing: border-box;
+    width: 70px;
+    height: 64px;
+    /*position: absolute;*/
+    margin-right: 70px;
+    margin-top: 35px;
+    float: right;
+    right: -80px;
+    top: 0;
+    padding: 4px 15px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 60px;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: #00a1d6;
+    border: 1px solid #00a1d6;
+    transition: 0.1s;
+    user-select: none;
+    outline: none;
+}
+
+li{
+    list-style-type: none;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 50px;
+}
+
+hr{
+    border: 2px solid #e5e9ef;
+    margin: 0 50px 0 40px;
+}
+
+/*返回顶部*/
+#totop{
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    right: 0px;
+    bottom: 50px;
+    z-index: 100;
+}
+#totop #btn{
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: url("../img/totop.png") no-repeat 0px 0px;
+    border-radius: 9px;
+}
+#totop a:hover{
+    background: url("../img/totop.png") no-repeat -84px 0px;
+    border-radius: 9px;
+}
+
+/*目录*/
+.rightCard{
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+    position: fixed;
+    right: 10px;
+    top: 70px;
+    z-index: 50;
+    padding-bottom: 30px;
+    width: 290px;
+    /*border-bottom: 2px solid green;*/
+}
+.rightCard>li{
+    margin-left: 30px;
+}

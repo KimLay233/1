@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的主页</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!--顶部导航-->
+    <div class="top" id="TOP">
+        <div class="left">
+            <div id="school_Img"></div>
+            <div class="myClass">2019级互联网金融与大数据技术综合实验班</div>
+            <div id="search">
+                <span>Bing</span>
+                <input type="text" id="search-input" placeholder="不会的知识点要搜索一下噢（Enter）" onclick="this.select()">
+                <button id="search_button"></button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top_text">欢迎!</div>
+            <div class="top_text"><a id="dp1" href="sign-in.html">登录</a></div>
+            <div class="top_text"><a id="dp2" href="sign-up.html">注册</a></div>
+            <div class="top_text" id="Esc" onclick="esc_login()"><a href="#">退出登录</a></div>
+        </div>
+    </div>
+    <div class="body">
+        <!--个人名片-->
+        <div class="card">
+            <div id="user"><p id="userText">用户</p><hr></div>
+            <div id="user_info">
+                <ul id="info">
+                    <li>
+                        <p>40</p>
+                        <p style="color: #808080;">关注</p>
+                    </li>
+                    <li>
+                        <p>50</p>
+                        <p style="color: #808080;">粉丝</p>
+                    </li>
+                    <li style="border: none">
+                        <p>60</p>
+                        <p style="color: #808080;">收藏</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--视频-->
+        <div class="radio">
+            <h1>高等数学</h1>
+            <iframe src="//player.bilibili.com/player.html?aid=671971694&bvid=BV1FU4y1p7f3&cid=305030041&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+            <textarea id="area" cols="30" rows="10" placeholder="发一条评论"></textarea>
+            <button type="submit" id="btn2">发表评论</button>
+        </div>
+    </div>
+    <div class="rightCard">
+        <h1>目录</h1>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </div>
+<!--回到顶部-->
+    <div id="totop">
+        <a href="javascript:;" id="btn"></a>
+    </div>
+    <script>
+        var btn_search = document.getElementById("search_button");
+        var user = window.sessionStorage.getItem('user');
+        var a = document.getElementById("userText");
+        var input_text = document.getElementById('search-input');
+
+        //输入框 按Enter
+        input_text.onkeypress = function (ev){
+            var keynum = ev.keyCode;
+            if(keynum == 13){
+                var search_input_text = document.getElementById("search-input").value;
+                searchUrl = "https://cn.bing.com/search?q=" + search_input_text;
+                window.open(searchUrl);
+            }
+        }
+
+        //获取游客信息，写入左边用户栏
+        if(user==null){
+            var user_temp = window.sessionStorage.getItem('user_temp');
+            a.innerHTML = user_temp;
+        }else{
+            a.innerHTML = user;
+        }
+
+        //弹出bing搜索
+        btn_search.onclick = function Search_page(){
+            var search_input_text = document.getElementById("search-input").value;
+            searchUrl = "https://cn.bing.com/search?q=" + search_input_text;
+            window.open(searchUrl);
+        }
+
+        //退出登录
+        function esc_login(){
+            alert("退出登录! 可重新登录!");
+            var dp1 = document.getElementById("dp1");
+            var dp2 = document.getElementById("dp2");
+            var esc_text = document.getElementById("Esc");
+            dp1.style.display = "inline";
+            dp2.style.display = "inline";
+            esc_text.style.display = "none";
+        }
+        //吸顶灯+回到顶部
+        var pageHeight = 200;
+        window.onload = function (){
+            var totop = document.getElementById("btn");
+            // 页面加载后隐藏按钮
+            totop.style.display = "none";
+
+            //回滚动作
+            var timer = null;
+            totop.onclick = function () {
+                timer = setInterval(function () {
+                    var backtop = document.documentElement.scrollTop || document.body.scrollTop;
+                    var speedTop = backtop / 5;
+                    document.documentElement.scrollTop = backtop - speedTop;
+                    if (backtop == 0) {
+                        clearInterval(timer);
+                    }
+                }, 30);
+            }
+            window.onscroll = function () {
+                // alert("111");
+                var backtop = document.documentElement.scrollTop || document.body.scrollTop;
+                if (backtop >= pageHeight) {
+                    totop.style.display = "block";
+                } else {
+                    totop.style.display = "none";
+                }
+
+
+                // 吸顶灯功能实现
+                var top = document.getElementById("TOP");
+                if(backtop>0){
+                    top.style.position = "fixed";
+                    top.style.top = "0";
+                    top.style.left = "0";
+                    top.style.zIndex = "100";
+                }else{
+                    top.style.position = "";
+                }
+            }
+        }
+
+        //评论区发表
+        var sub = document.getElementById("btn2");
+        sub.onclick = function () {
+
+            //获取输入的文本
+            var InputText = document.getElementById("area").value;
+            var userName = document.getElementById("userText").innerHTML;
+            // alert(userName);
+            if(InputText==""){
+                alert("你还没写评论呢！");
+                return false;
+            }
+
+            //创建元素节点
+            var li_node = document.createElement("li");
+            var p_node = document.createElement("p");
+
+            //以文本创建新元素
+            var node1 = document.createTextNode(InputText);
+            var node2 = document.createTextNode(userName);
+
+            //把新元素加到新节点里
+            li_node.appendChild(node1);
+            p_node.appendChild(node2);
+
+            //加个水平线
+            var hr = document.createElement("hr");
+            document.getElementsByClassName("radio")[0].appendChild(hr);
+
+            //把处理好的新节点加到radio的div里
+            document.getElementsByClassName("radio")[0].appendChild(p_node);
+            document.getElementsByClassName("radio")[0].appendChild(li_node);
+
+            //改一下p的样式
+            p_node.style.margin = "30px 0 0 50px";
+            p_node.style.fontSize = "18px";
+            // p_node.style["border-top"] = "1px solid #e5e9ef";
+
+            //清空输入后的文本框
+            document.getElementById("area").value = "";
+
+            //每发表一条评论，div的高度拓宽
+            var d = document.getElementsByClassName("radio")[0];
+                //获取radio的样式height
+            var h = getComputedStyle(d).height;
+            h = parseInt(h) + 100;
+            // alert(h);
+            d.style.height = h+"px";
+        }
+    </script>
+</body>
+</html>

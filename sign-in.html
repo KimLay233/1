@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/mr-basic.css"/>
+    <link href="css/login-in.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background-color: #f5f6f7;">
+
+<div class="res-banner">
+    <div class="res-main">
+        <div class="login-box2" style="right:30%;margin-right: 0px;">
+            <h1>Welcome</h1>
+        </div>
+        <div class="login-box" style="right:30%">
+            <div class="mr-tabs" id="doc-my-tabs">
+                <ul class="mr-tabs-nav mr-nav mr-nav-tabs mr-nav-justify">
+                    <li class="mr-active"><a href="">登录</a></li>
+                </ul>
+
+                <div class="mr-tabs-bd">
+                    <div class="mr-tab-panel mr-active">
+                        <form method="post">
+
+                            <div class="user-email">
+                                <label for="email"><i class="mr-icon-envelope-o"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="email" name="" id="email" placeholder="请输入账号">
+                            </div>
+                            <div class="user-pass">
+                                <label for="password"><i class="mr-icon-lock"></i><span style="color:red;margin-left:5px">*</span></label>
+                                <input type="password" name="" id="password" placeholder="输入密码">
+                            </div>
+
+                        </form>
+                        <div class="rememberMe">
+                            <label >
+                                <input type="checkbox" name="rememberMe" value="" style="margin-right: 4px;">记住我
+                            </label>
+                        </div>
+                        <div class="Jump-sign-up">
+                            <label>
+                                <a href="sign-up.html" id="sign-up">注册</a>
+                            </label>
+                        </div>
+                        <div class="mr-cf">
+                            <input type="submit" onclick="mr_verify()" value="登录" class="mr-btn mr-btn-primary mr-btn-sm mr-fl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    var pass = document.getElementById('password');
+    pass.onkeypress = function (ev){
+        var keynum = ev.keyCode;
+        if(keynum == 13){
+            window.mr_verify();
+        }
+    }
+    function mr_verify() {
+        var user = window.sessionStorage.getItem('user');
+        var pwd = window.sessionStorage.getItem('pwd');
+        // var str = "userName= " + user + '\npwd= ' + pwd;
+        // alert(str);
+        //获取表单对象
+        var a = document.getElementById("email").value;
+        var b = document.getElementById("password").value;
+        //验证项目是否为空
+        //1、邮箱、密码、确认密码、手机号码不能为空！
+        if (a == "" || b == "") {
+            alert("邮箱、密码、确认密码、手机号码不能为空！");
+            // 如果为空,返回false
+            return false;
+        }
+        //验证邮件格式：有“@”、“."并且“@”在“."之前。
+        var pos1 = a.indexOf("@");
+        var pos2 = a.indexOf(".");
+        if (pos1 != -1 && pos2 != -1) {
+            if (pos1 > pos2) {
+                alert("@在.之前。");
+                return false;
+            }
+        } else {
+            alert("邮箱格式不合规范");
+            return false;
+        }
+        if(a==user && b==pwd){
+            alert("登录成功!");
+            window.open('index.html')
+            sessionStorage.href = 'index.html'
+            //设置localStorage
+            window.sessionStorage.setItem('user', a);
+            window.close();
+        }else if(a==user){
+            alert("密码错误！请仔细想想！");
+        }else{
+            alert("账号错误！");
+        }
+    }
+</script>
+</body>
+
+</html>
